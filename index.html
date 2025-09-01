@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PROJETO: VANGUARDA IA</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts: Anton & Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Poppins:wght@300;400;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- GSAP (GreenSock Animation Platform) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <style>
+        /* Estilos customizados e definições de fontes */
+        body {
+            background-color: #000;
+            color: #f5f5f5;
+            font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .font-anton {
+            font-family: 'Anton', sans-serif;
+            letter-spacing: 1.5px;
+        }
+
+        .font-poppins {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .highlight {
+            color: #fcb515;
+        }
+
+        /* Efeito Glassmorphism */
+        .glass-card {
+            background: rgba(0, 0, 0, 0.3);
+            /* Fundo preto com transparência */
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .glass-card:hover {
+            background: rgba(10, 10, 10, 0.4);
+            border: 1px solid rgba(251, 181, 21, 0.5);
+            transform: translateY(-8px);
+        }
+
+        /* Animações de Scroll (Fade in) */
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 1s ease-out, transform 0.8s ease-out;
+        }
+
+        .reveal-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Background com Overlay */
+        .section-bg {
+            position: relative;
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            /* Parallax effect */
+        }
+
+        .section-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.85);
+            /* Overlay mais escuro */
+            z-index: 1;
+        }
+
+        .section-bg>* {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Elementos Decorativos */
+        .deco-shape {
+            position: fixed;
+            /* Mudar para fixed para melhor efeito parallax */
+            opacity: 0.3;
+            pointer-events: none;
+            transition: transform 0.5s ease-out;
+        }
+
+        .deco-1 {
+            top: 20%;
+            left: 5%;
+            width: 100px;
+            height: 1px;
+            background: #fcb515;
+        }
+
+        .deco-2 {
+            top: 80%;
+            right: 10%;
+            width: 60px;
+            height: 60px;
+            border: 1px solid #fcb515;
+        }
+
+        .deco-3 {
+            top: 50%;
+            left: 15%;
+            width: 80px;
+            height: 1px;
+            background: #fcb515;
+            transform: rotate(90deg);
+        }
+
+        .deco-4 {
+            bottom: 10%;
+            left: 10%;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 1px solid #fcb515;
+        }
+
+        .deco-5 {
+            top: 35%;
+            right: 8%;
+            width: 150px;
+            height: 1px;
+            background: #fcb515;
+        }
+
+        .canvas-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            opacity: 0.1;
+        }
+    </style>
+</head>
+
+<body class="antialiased">
+
+    <!-- Elementos Decorativos -->
+    <div class="deco-shape deco-1"></div>
+    <div class="deco-shape deco-2"></div>
+    <div class="deco-shape deco-3"></div>
+    <div class="deco-shape deco-4"></div>
+    <div class="deco-shape deco-5"></div>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-screen flex items-center justify-center text-center overflow-hidden">
+        <!-- Video Background -->
+        <video autoplay loop muted playsinline class="absolute top-0 left-0 w-full h-full object-cover z-0">
+            <source src="./assets/vid/hero.mp4" type="video/mp4">
+            Seu navegador não suporta a tag de vídeo.
+        </video>
+
+        <!-- Overlay -->
+        <div class="absolute top-0 left-0 w-full h-full bg-black/[.85] z-10"></div>
+
+        <!-- Conteúdo -->
+        <header class="container mx-auto px-6 md:px-12 relative z-20 reveal">
+            <h1 class="font-anton text-5xl md:text-8xl lg:text-9xl uppercase">
+                <span class="highlight">PROJETO:</span> VANGUARDA
+            </h1>
+            <p class="font-poppins font-light text-lg md:text-2xl mt-4 max-w-4xl mx-auto">
+                UMA PROPOSTA PARA EVOLUIR A RT PUBLICITY
+            </p>
+            <p class="font-poppins text-base md:text-xl mt-8 max-w-3xl text-white/70 mx-auto">
+                Reintegração à equipe de forma integral para assumir uma nova frente de Inteligência Artificial e
+                Automação.
+            </p>
+        </header>
+    </section>
+
+    <!-- Seção: Forja - Parte 1 -->
+    <section class="py-20 md:py-32">
+        <div class="container mx-auto px-6 md:px-12">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div class="reveal">
+                    <h2 class="font-anton text-4xl md:text-6xl uppercase"><span class="highlight">A Forja</span> do
+                        Empreendedor</h2>
+                    <div class="font-poppins text-lg md:text-xl space-y-6 mt-8 text-white/80 font-light">
+                        <p>Minha saída da RT Publicity não foi uma simples despedida. Foi o início de uma campanha
+                            pessoal: <span class="text-white font-normal">abandonar as linhas seguras para me provar na
+                                linha de frente, onde a pressão máxima forja os verdadeiros estrategistas.</span></p>
+                        <p>Eu não estava feliz no conforto. Eu precisava ir para a arena, onde a gravidade de cada
+                            decisão é sentida, para construir a minha melhor versão.</p>
+                    </div>
+                </div>
+                <div class="reveal">
+                    <img src="https://images.unsplash.com/photo-1542360299-4a742b06385d?q=80&w=1974&auto=format&fit=crop"
+                        alt="Faíscas de metal sendo forjado, representando a pressão e a criação."
+                        class="rounded-lg w-full h-[400px] lg:h-[500px] object-cover">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção: Forja - Parte 2 -->
+    <section class="pb-20 md:pb-32">
+        <div class="container mx-auto px-6 md:px-12">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div class="reveal lg:order-last">
+                    <h2 class="font-anton text-4xl md:text-6xl uppercase"><span class="highlight">A Fronteira</span> da
+                        Inovação</h2>
+                    <div class="font-poppins text-lg md:text-xl space-y-6 mt-8 text-white/80 font-light">
+                        <p>Nessa jornada, me lancei de cabeça no ecossistema de negócios. Estudei na G4 Educação e
+                            estive de frente com os maiores players do mercado, como Tallis Gomes, Alfredo Soares, Caito
+                            Maia e Guilherme Benchimol, aprendendo diretamente com eles como se constroem negócios de
+                            sucesso.</p>
+                        <p class="text-white font-normal">Eu não fracassei como empresário. Pelo contrário. <span
+                                class="highlight">Eu obtive o maior sucesso que poderia ter, pois descobri meu
+                                verdadeiro lugar:</span> na fronteira da inovação, construindo o futuro com inteligência
+                            artificial.</p>
+                    </div>
+                </div>
+                <div class="reveal lg:order-first">
+                    <img src="https://images.unsplash.com/photo-1538688283628-b2a1012d4996?q=80&w=2070&auto=format&fit=crop"
+                        alt="Visualização abstrata de uma rede de dados, representando o ecossistema de negócios e a inteligência artificial."
+                        class="rounded-lg w-full h-[400px] lg:h-[500px] object-cover">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção: Proposta -->
+    <section class="py-20 md:py-32 relative isolate overflow-hidden">
+        <canvas id="canvas-proposta" class="canvas-bg"></canvas>
+        <div class="container mx-auto px-6 md:px-12 relative z-10 reveal">
+            <div class="max-w-5xl mx-auto">
+                <h2 class="font-anton text-4xl md:text-6xl uppercase text-center"><span class="highlight">Minha
+                        Proposta:</span> Retorno com Impacto Imediato</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
+                    <div class="glass-card p-8 rounded-lg">
+                        <h3 class="font-anton text-2xl highlight">Suporte Imediato e Amplo</h3>
+                        <p class="mt-4 text-white/70 font-light">Ofereço apoio direto à operação de Web ou Tráfego Pago,
+                            enquanto implemento os projetos-piloto de IA em ambas as áreas para gerar ganhos de
+                            eficiência.</p>
+                        <p class="mt-4 text-xs uppercase tracking-wider text-amber-300">Sugestão: Apoiar a equipe Web.
+                        </p>
+                    </div>
+                    <div class="glass-card p-8 rounded-lg">
+                        <h3 class="font-anton text-2xl highlight">Otimização de Processos</h3>
+                        <p class="mt-4 text-white/70 font-light">Como especialista certificado em ClickUp, posso
+                            automatizar a gestão de tarefas e acelerar os fluxos de trabalho de toda a equipe.</p>
+                    </div>
+                    <div class="glass-card p-8 rounded-lg">
+                        <h3 class="font-anton text-2xl highlight">Construção Estratégica</h3>
+                        <p class="mt-4 text-white/70 font-light">Liderar a criação do setor de IA & Automação com a
+                            visão de transformá-lo em uma nova fonte de lucro para a empresa.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção: Roadmap Interativo -->
+    <section class="py-20 md:py-32 relative isolate overflow-hidden" id="roadmap-section">
+        <canvas id="canvas-roadmap" class="canvas-bg"></canvas>
+        <div class="container mx-auto px-6 md:px-12 relative z-10 reveal">
+            <h2 class="font-anton text-4xl md:text-6xl uppercase text-center mb-24"><span
+                    class="highlight">Roadmap:</span> O Plano de Ação</h2>
+            <div class="relative max-w-2xl mx-auto">
+                <!-- Linha da Timeline -->
+                <div class="absolute left-4 top-0 h-full w-0.5 bg-white/10" id="timeline-line">
+                    <div class="absolute left-0 top-0 h-0 w-full bg-amber-400" id="timeline-progress"></div>
+                </div>
+
+                <div class="space-y-24">
+                    <!-- Item da Timeline 1 -->
+                    <div class="pl-12 roadmap-item">
+                        <div class="glass-card p-8 rounded-lg">
+                            <p class="font-poppins text-sm uppercase tracking-widest text-white/50">FASE 1 (MÊS 1-3)</p>
+                            <h3 class="font-anton text-2xl mt-2 highlight">PROJETOS-PILOTO EM WEB E TRÁFEGO</h3>
+                            <ul class="mt-4 space-y-3 text-white/70 font-light list-disc list-inside">
+                                <li><b class="font-semibold text-white">Tráfego:</b> Agentes de IA para monitorar
+                                    campanhas, comparar resultados e enviar relatórios.</li>
+                                <li><b class="font-semibold text-white">Web:</b> Agentes para monitorar sites, métricas
+                                    e acelerar o trabalho de Designers e Programadores.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Item da Timeline 2 -->
+                    <div class="pl-12 roadmap-item">
+                        <div class="glass-card p-8 rounded-lg">
+                            <p class="font-poppins text-sm uppercase tracking-widest text-white/50">FASE 2 (MÊS 3-6)</p>
+                            <h3 class="font-anton text-2xl mt-2 highlight">EXPANSÃO INTERNA E CONSOLIDAÇÃO</h3>
+                            <ul class="mt-4 space-y-3 text-white/70 font-light list-disc list-inside">
+                                <li><b class="font-semibold text-white">Processos:</b> Criação de agentes para suprir
+                                    qualquer necessidade de trabalhos operacionais repetitivos.</li>
+                                <li><b class="font-semibold text-white">Consolidação:</b> Transformar a IA em um pilar
+                                    central da operação, gerando vantagem competitiva.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção: Compromisso -->
+    <section class="section-bg"
+        style="background-image: url('https://images.unsplash.com/photo-1580582932707-520aed937b7b?q=80&w=1932&auto=format&fit=crop');">
+        <div class="container mx-auto px-6 md:px-12 py-32 md:py-48 text-center reveal">
+            <div class="max-w-4xl mx-auto">
+                <h2 class="font-anton text-4xl md:text-6xl uppercase"><span class="highlight">Meu Compromisso:</span>
+                    Skin in the Game</h2>
+                <p class="text-lg md:text-2xl mt-6 font-light">Para provar o valor desta proposta e acelerar os
+                    primeiros resultados, <span class="text-white font-normal">eu mesmo farei o investimento
+                        inicial</span> nas ferramentas necessárias para validação do projeto-piloto.</p>
+                <p class="font-anton text-2xl md:text-4xl mt-8 highlight">O RISCO DO PONTAPÉ INICIAL É MEU.</p>
+                <p class="mt-8 text-white/60">Esta não é apenas uma proposta de trabalho. É um investimento pessoal no
+                    futuro que acredito que podemos construir juntos.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção: Visão de Longo Prazo -->
+    <section class="py-20 md:py-32 relative isolate overflow-hidden">
+        <canvas id="canvas-visao" class="canvas-bg"></canvas>
+        <div class="container mx-auto px-6 md:px-12 relative z-10 reveal">
+            <div class="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h2 class="font-anton text-4xl md:text-6xl uppercase"><span class="highlight">A Visão de Longo
+                            Prazo:</span> Um Novo Produto</h2>
+                    <p class="mt-6 text-lg md:text-xl font-light text-white/80">A tecnologia que desenvolvermos será um
+                        diferencial para a RT e um produto de alto valor para nossos clientes.</p>
+                    <div class="mt-8 space-y-4">
+                        <div class="border-l-2 border-amber-400 pl-4 py-2">
+                            <h4 class="font-bold text-white">Exemplos de Agentes para Clientes (escolas):</h4>
+                            <ul class="font-light text-white/70 list-disc list-inside mt-2">
+                                <li>IA que responde dúvidas de pais no WhatsApp 24/7.</li>
+                                <li>Monitoramento de engajamento e alerta sobre riscos de churn.</li>
+                                <li>Qualquer tarefa repetitiva pode ser automatizada!</li>
+                            </ul>
+                        </div>
+                        <div class="border-l-2 border-amber-400 pl-4 py-2">
+                            <h4 class="font-bold text-white">Potencial de Mercado:</h4>
+                            <p class="font-light text-white/70 mt-2">Venda de um agente de IA (implementação +
+                                mensalidade) varia de <span class="highlight font-semibold">R$ 2.000 a R$ 20.000</span>
+                                por mês.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="glass-card p-6 rounded-lg reveal">
+                        <h3 class="font-anton text-xl highlight">Crescimento Exponencial</h3>
+                        <p class="text-sm mt-2 font-light text-white/70">Projeção de crescimento anual superior a 23%
+                            até 2030 (Statista).</p>
+                    </div>
+                    <div class="glass-card p-6 rounded-lg reveal" style="transition-delay: 100ms;">
+                        <h3 class="font-anton text-xl highlight">Oceano Azul</h3>
+                        <p class="text-sm mt-2 font-light text-white/70">Poucas agências hoje vendem agentes de IA, uma
+                            demanda crescente.</p>
+                    </div>
+                    <div class="glass-card p-6 rounded-lg col-span-2 reveal" style="transition-delay: 200ms;">
+                        <h3 class="font-anton text-xl highlight">Modelos de Negócio</h3>
+                        <p class="text-sm mt-2 font-light text-white/70"><b class="text-white">Assinatura Fixa:</b> Taxa
+                            de implementação + mensalidade. <br><b class="text-white">Dinâmico (Uso/Créditos):</b>
+                            Modelo similar ao de tráfego pago.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção: Alinhamento -->
+    <section class="py-20 md:py-32 relative isolate overflow-hidden">
+        <canvas id="canvas-alinhamento" class="canvas-bg"></canvas>
+        <div class="container mx-auto px-6 md:px-12 relative z-10 reveal">
+            <div class="max-w-4xl mx-auto text-center">
+                <h2 class="font-anton text-4xl md:text-6xl uppercase">Alinhamento de Objetivos <span class="highlight">&
+                        Parceria</span></h2>
+                <p class="text-lg md:text-xl font-light mt-8 text-white/80">Minha tomada de decisão e dedicação serão de
+                    um <b class="text-white">sócio</b>, sempre buscando o crescimento sustentável da empresa.</p>
+                <p class="text-lg md:text-xl font-light mt-4 text-white/80">Meu objetivo de carreira é, através da
+                    entrega de resultados exponenciais, merecer a oportunidade de um dia alcançar uma participação de ao
+                    menos <b class="text-white">1% na empresa.</b> É a minha meta pessoal que guiará meu
+                    comprometimento.</p>
+
+                <div class="mt-12">
+                    <h3 class="font-anton text-2xl uppercase tracking-wider highlight">Remuneração Inicial Evolutiva
+                    </h3>
+                    <div class="flex flex-col md:flex-row justify-center items-center gap-4 md:gap-8 mt-6 text-center">
+                        <div class="reveal">
+                            <p class="font-anton text-3xl">R$ 3.000</p>
+                            <p class="text-sm uppercase text-white/50">Início (Fase 1)</p>
+                        </div>
+                        <div class="text-amber-400 font-light text-2xl reveal">→</div>
+                        <div class="reveal">
+                            <p class="font-anton text-3xl">R$ 4.000</p>
+                            <p class="text-sm uppercase text-white/50">6 Meses (Fase 2)</p>
+                        </div>
+                        <div class="text-amber-400 font-light text-2xl reveal">→</div>
+                        <div class="reveal">
+                            <p class="font-anton text-3xl">R$ 5.000+</p>
+                            <p class="text-sm uppercase text-white/50">12 Meses (Consolidação)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção: Por que eu? -->
+    <section class="py-20 md:py-32 relative isolate overflow-hidden">
+        <canvas id="canvas-porque" class="canvas-bg"></canvas>
+        <div class="container mx-auto px-6 md:px-12 relative z-10 reveal">
+            <div class="max-w-5xl mx-auto">
+                <h2 class="font-anton text-4xl md:text-6xl uppercase text-center">Por que <span
+                        class="highlight">Eu?</span> Por que <span class="highlight">Agora?</span></h2>
+                <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                    <div class="reveal">
+                        <p class="font-anton text-6xl highlight">01</p>
+                        <p class="mt-2 font-semibold">Já entendo a cultura, os clientes e os desafios da RT Publicity.
+                            Não há curva de aprendizado.</p>
+                    </div>
+                    <div class="reveal">
+                        <p class="font-anton text-6xl highlight">02</p>
+                        <p class="mt-2 font-semibold">Não trago apenas a técnica; trago uma visão estratégica de
+                            negócios em inteligência artificial.</p>
+                    </div>
+                    <div class="reveal">
+                        <p class="font-anton text-6xl highlight">03</p>
+                        <p class="mt-2 font-semibold">Expert comprovado em IA, automação e gestão de projetos.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- Footer -->
+    <section class="section-bg"
+        style="background-image: url('https://images.unsplash.com/photo-1618005198919-d3d4b5a92ead?q=80&w=1974&auto=format&fit=crop');">
+        <footer class="text-center py-32 md:py-48 reveal">
+            <p class="font-anton text-3xl md:text-5xl uppercase">O conforto gera ferrugem.</p>
+            <p class="font-anton text-3xl md:text-5xl uppercase highlight mt-2">A batalha afia a lâmina.</p>
+        </footer>
+    </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            gsap.registerPlugin(ScrollTrigger);
+
+            // --- Animação de Revelação Simples ---
+            const revealElements = document.querySelectorAll('.reveal');
+            revealElements.forEach(elem => {
+                gsap.fromTo(elem,
+                    { opacity: 0, y: 50 },
+                    {
+                        opacity: 1,
+                        y: 0,
+                        duration: 1,
+                        ease: 'power3.out',
+                        scrollTrigger: {
+                            trigger: elem,
+                            start: 'top 85%',
+                            toggleActions: 'play none none none'
+                        }
+                    }
+                );
+            });
+
+            // --- Animação Interativa do Roadmap ---
+            const roadmapItems = document.querySelectorAll('.roadmap-item');
+            gsap.to("#timeline-progress", {
+                height: "100%",
+                ease: "none",
+                scrollTrigger: {
+                    trigger: "#roadmap-section",
+                    start: "top center",
+                    end: "bottom center",
+                    scrub: true
+                }
+            });
+            roadmapItems.forEach(item => {
+                gsap.from(item, {
+                    opacity: 0,
+                    x: 50,
+                    ease: 'power3.out',
+                    scrollTrigger: {
+                        trigger: item,
+                        start: 'top 80%',
+                        toggleActions: 'play none none reverse'
+                    }
+                });
+            });
+
+            // --- Lógica para Elementos Decorativos ---
+            const decoShapes = document.querySelectorAll('.deco-shape');
+            window.addEventListener('scroll', function () {
+                const scrollY = window.scrollY;
+                decoShapes.forEach((shape, i) => {
+                    const factor = (i % 2 === 0 ? -1 : 1) * (i + 1) * 0.1;
+                    gsap.to(shape, { y: scrollY * factor, ease: 'power2.out', duration: 1 });
+                });
+            });
+
+            // --- Funções de Animação de Fundo ---
+
+            // Animação 2: Ruído Geométrico (Proposta)
+            function createGeometricNoise(canvasId) {
+                const canvas = document.getElementById(canvasId);
+                if (!canvas) return;
+                const ctx = canvas.getContext('2d');
+                let lines = [];
+                const setSize = () => {
+                    canvas.width = canvas.offsetWidth;
+                    canvas.height = canvas.offsetHeight;
+                };
+                setSize();
+
+                class Line {
+                    constructor() {
+                        this.x = Math.random() * canvas.width;
+                        this.y = Math.random() * canvas.height;
+                        this.life = Math.random() * 200 + 50;
+                        this.angle = Math.random() * Math.PI * 2;
+                        this.speed = Math.random() * 0.3 + 0.1;
+                    }
+                    update() {
+                        this.life--;
+                        this.x += Math.cos(this.angle) * this.speed;
+                        this.y += Math.sin(this.angle) * this.speed;
+                        if (this.x < 0 || this.x > canvas.width || this.y < 0 || this.y > canvas.height) this.life = 0;
+                    }
+                    draw() {
+                        const opacity = this.life / 100 > 1 ? 1 : this.life / 100;
+                        ctx.strokeStyle = `rgba(252, 181, 21, ${opacity * 0.7})`;
+                        ctx.lineWidth = 1;
+                        ctx.beginPath();
+                        ctx.moveTo(this.x, this.y);
+                        ctx.lineTo(this.x + Math.cos(this.angle) * 10, this.y + Math.sin(this.angle) * 10);
+                        ctx.stroke();
+                    }
+                }
+
+                function animate() {
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                    if (lines.length < 100) lines.push(new Line());
+                    lines = lines.filter(l => l.life > 0);
+                    lines.forEach(l => { l.update(); l.draw(); });
+                    requestAnimationFrame(animate);
+                }
+                animate();
+                window.addEventListener('resize', setSize);
+            }
+
+            // Animação 3: Linhas de Escaneamento (Roadmap)
+            function createScanningLines(canvasId) {
+                const canvas = document.getElementById(canvasId);
+                if (!canvas) return;
+                const ctx = canvas.getContext('2d');
+                let yPos = 0;
+                let direction = 1;
+                const setSize = () => {
+                    canvas.width = canvas.offsetWidth;
+                    canvas.height = canvas.offsetHeight;
+                };
+                setSize();
+
+                function animate() {
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                    ctx.strokeStyle = `rgba(252, 181, 21, 0.5)`;
+                    ctx.lineWidth = 1;
+                    ctx.beginPath();
+                    ctx.moveTo(0, yPos);
+                    ctx.lineTo(canvas.width, yPos);
+                    ctx.stroke();
+
+                    yPos += direction * 0.5;
+                    if (yPos > canvas.height || yPos < 0) direction *= -1;
+                    requestAnimationFrame(animate);
+                }
+                animate();
+                window.addEventListener('resize', setSize);
+            }
+
+            // Animação 4: Grade Ondulante (Visão)
+            function createWarpingGrid(canvasId) {
+                const canvas = document.getElementById(canvasId);
+                if (!canvas) return;
+                const ctx = canvas.getContext('2d');
+                let time = 0;
+                const gridSize = 40;
+                const setSize = () => {
+                    canvas.width = canvas.offsetWidth;
+                    canvas.height = canvas.offsetHeight;
+                };
+                setSize();
+
+                function draw() {
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                    ctx.strokeStyle = '#fcb515';
+                    ctx.lineWidth = 0.3;
+                    for (let x = 0; x < canvas.width; x += gridSize) {
+                        for (let y = 0; y < canvas.height; y += gridSize) {
+                            const angle = Math.sin(x * 0.01 + time) + Math.cos(y * 0.01 + time);
+                            ctx.save();
+                            ctx.translate(x + gridSize / 2, y + gridSize / 2);
+                            ctx.rotate(angle);
+                            ctx.strokeRect(-gridSize / 4, -gridSize / 4, gridSize / 2, gridSize / 2);
+                            ctx.restore();
+                        }
+                    }
+                    time += 0.01;
+                    requestAnimationFrame(draw);
+                }
+                draw();
+                window.addEventListener('resize', setSize);
+            }
+
+            // Animação 5: Partículas de Alinhamento (Alinhamento)
+            function createAlignmentParticles(canvasId) {
+                const canvas = document.getElementById(canvasId);
+                if (!canvas) return;
+                const ctx = canvas.getContext('2d');
+                let particles = [];
+                const setSize = () => {
+                    canvas.width = canvas.offsetWidth;
+                    canvas.height = canvas.offsetHeight;
+                };
+                setSize();
+
+                class Particle {
+                    constructor() {
+                        const edge = Math.floor(Math.random() * 4);
+                        if (edge === 0) { this.x = 0; this.y = Math.random() * canvas.height; }
+                        else if (edge === 1) { this.x = canvas.width; this.y = Math.random() * canvas.height; }
+                        else if (edge === 2) { this.x = Math.random() * canvas.width; this.y = 0; }
+                        else { this.x = Math.random() * canvas.width; this.y = canvas.height; }
+                        this.size = Math.random() * 3 + 1;
+                        this.life = 1;
+                    }
+                    update() {
+                        const dx = canvas.width / 2 - this.x;
+                        const dy = canvas.height / 2 - this.y;
+                        const dist = Math.hypot(dx, dy);
+                        if (dist > 2) {
+                            this.x += dx / 100;
+                            this.y += dy / 100;
+                        }
+                    }
+                    draw() {
+                        ctx.fillStyle = `rgba(252, 181, 21, 0.7)`;
+                        ctx.beginPath();
+                        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                        ctx.fill();
+                    }
+                }
+
+                function animate() {
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                    if (particles.length < 80) particles.push(new Particle());
+                    particles.forEach(p => { p.update(); p.draw(); });
+                    requestAnimationFrame(animate);
+                }
+                animate();
+                window.addEventListener('resize', setSize);
+            }
+
+            // Animação 6: Cruzes Erráticas (Por que eu?)
+            function createErraticCrosses(canvasId) {
+                const canvas = document.getElementById(canvasId);
+                if (!canvas) return;
+                const ctx = canvas.getContext('2d');
+                let crosses = [];
+                const setSize = () => {
+                    canvas.width = canvas.offsetWidth;
+                    canvas.height = canvas.offsetHeight;
+                };
+                setSize();
+
+                class Cross {
+                    constructor() {
+                        this.x = Math.random() * canvas.width;
+                        this.y = Math.random() * canvas.height;
+                        this.size = Math.random() * 10 + 5;
+                        this.life = Math.random() * 100 + 20;
+                    }
+                    draw() {
+                        const opacity = Math.random() * 0.5 + 0.2;
+                        ctx.strokeStyle = `rgba(252, 181, 21, ${opacity})`;
+                        ctx.lineWidth = 1.5;
+                        ctx.beginPath();
+                        ctx.moveTo(this.x - this.size, this.y);
+                        ctx.lineTo(this.x + this.size, this.y);
+                        ctx.moveTo(this.x, this.y - this.size);
+                        ctx.lineTo(this.x, this.y + this.size);
+                        ctx.stroke();
+                    }
+                }
+
+                function animate() {
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                    if (crosses.length < 30) crosses.push(new Cross());
+                    crosses = crosses.filter(c => c.life-- > 0);
+                    if (Math.random() > 0.9) crosses.push(new Cross());
+
+                    crosses.forEach(c => c.draw());
+                    requestAnimationFrame(animate);
+                }
+                animate();
+                window.addEventListener('resize', setSize);
+            }
+
+
+            // Inicializar todas as animações
+            // createInteractiveLines('canvas-forja'); // Removida pois a seção mudou
+            createGeometricNoise('canvas-proposta');
+            createScanningLines('canvas-roadmap');
+            createWarpingGrid('canvas-visao');
+            createAlignmentParticles('canvas-alinhamento');
+            createErraticCrosses('canvas-porque');
+
+        });
+    </script>
+</body>
+
+</html>
