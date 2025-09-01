@@ -48,14 +48,43 @@
             backdrop-filter: blur(15px);
             -webkit-backdrop-filter: blur(15px);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.3s ease;
+            /* Transição específica para evitar animações indesejadas na imagem */
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+            display: flex;
+            flex-direction: column;
         }
 
         .glass-card:hover {
             background: rgba(10, 10, 10, 0.4);
             border: 1px solid rgba(251, 181, 21, 0.5);
-            transform: translateY(-8px);
         }
+
+        /* Card com Background Image */
+        .card-with-bg {
+            position: relative;
+            background-size: cover;
+            background-position: center;
+            overflow: hidden;
+            min-height: 350px;
+            /* Garante altura mínima */
+        }
+
+        .card-with-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.3));
+            z-index: 1;
+        }
+
+        .card-with-bg>* {
+            position: relative;
+            z-index: 2;
+        }
+
 
         /* Animações de Scroll (Fade in) */
         .reveal {
@@ -171,7 +200,7 @@
     <section class="relative min-h-screen flex items-center justify-center text-center overflow-hidden">
         <!-- Video Background -->
         <video autoplay loop muted playsinline class="absolute top-0 left-0 w-full h-full object-cover z-0">
-            <source src="./assets/vid/hero.mp4" type="video/mp4">
+            <source src="https://videos.pexels.com/video-files/3214439/3214439-hd_1920_1080_25fps.mp4" type="video/mp4">
             Seu navegador não suporta a tag de vídeo.
         </video>
 
@@ -181,7 +210,7 @@
         <!-- Conteúdo -->
         <header class="container mx-auto px-6 md:px-12 relative z-20 reveal">
             <h1 class="font-anton text-5xl md:text-8xl lg:text-9xl uppercase">
-                <span class="highlight">PROJETO:</span> VANGUARDA
+                <span class="highlight">PROJETO:</span> VANGUARDA IA
             </h1>
             <p class="font-poppins font-light text-lg md:text-2xl mt-4 max-w-4xl mx-auto">
                 UMA PROPOSTA PARA EVOLUIR A RT PUBLICITY
@@ -252,23 +281,29 @@
                 <h2 class="font-anton text-4xl md:text-6xl uppercase text-center"><span class="highlight">Minha
                         Proposta:</span> Retorno com Impacto Imediato</h2>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
-                    <div class="glass-card p-8 rounded-lg">
-                        <h3 class="font-anton text-2xl highlight">Suporte Imediato e Amplo</h3>
-                        <p class="mt-4 text-white/70 font-light">Ofereço apoio direto à operação de Web ou Tráfego Pago,
-                            enquanto implemento os projetos-piloto de IA em ambas as áreas para gerar ganhos de
-                            eficiência.</p>
-                        <p class="mt-4 text-xs uppercase tracking-wider text-amber-300">Sugestão: Apoiar a equipe Web.
-                        </p>
+                    <div class="glass-card card-with-bg rounded-lg"
+                        style="background-image: url('https://images.unsplash.com/photo-1587440871875-191322ee64b0?q=80&w=2071&auto=format&fit=crop')">
+                        <div class="p-8 mt-auto">
+                            <h3 class="font-anton text-2xl highlight">Suporte Imediato e Amplo</h3>
+                            <p class="mt-4 text-white/70 font-light">Ofereço apoio direto à operação de Web ou Tráfego
+                                Pago, enquanto implemento os projetos-piloto de IA em ambas as áreas.</p>
+                        </div>
                     </div>
-                    <div class="glass-card p-8 rounded-lg">
-                        <h3 class="font-anton text-2xl highlight">Otimização de Processos</h3>
-                        <p class="mt-4 text-white/70 font-light">Como especialista certificado em ClickUp, posso
-                            automatizar a gestão de tarefas e acelerar os fluxos de trabalho de toda a equipe.</p>
+                    <div class="glass-card card-with-bg rounded-lg"
+                        style="background-image: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop')">
+                        <div class="p-8 mt-auto">
+                            <h3 class="font-anton text-2xl highlight">Otimização de Processos</h3>
+                            <p class="mt-4 text-white/70 font-light">Como especialista certificado em ClickUp, posso
+                                automatizar a gestão e acelerar os fluxos de trabalho.</p>
+                        </div>
                     </div>
-                    <div class="glass-card p-8 rounded-lg">
-                        <h3 class="font-anton text-2xl highlight">Construção Estratégica</h3>
-                        <p class="mt-4 text-white/70 font-light">Liderar a criação do setor de IA & Automação com a
-                            visão de transformá-lo em uma nova fonte de lucro para a empresa.</p>
+                    <div class="glass-card card-with-bg rounded-lg"
+                        style="background-image: url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop')">
+                        <div class="p-8 mt-auto">
+                            <h3 class="font-anton text-2xl highlight">Construção Estratégica</h3>
+                            <p class="mt-4 text-white/70 font-light">Liderar a criação do setor de IA & Automação para
+                                se tornar uma nova fonte de lucro.</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -283,36 +318,44 @@
                     class="highlight">Roadmap:</span> O Plano de Ação</h2>
             <div class="relative max-w-2xl mx-auto">
                 <!-- Linha da Timeline -->
-                <div class="absolute left-4 top-0 h-full w-0.5 bg-white/10" id="timeline-line">
+                <div class="absolute left-4 top-0 h-full w-0-5 bg-white/10" id="timeline-line">
                     <div class="absolute left-0 top-0 h-0 w-full bg-amber-400" id="timeline-progress"></div>
                 </div>
 
                 <div class="space-y-24">
                     <!-- Item da Timeline 1 -->
                     <div class="pl-12 roadmap-item">
-                        <div class="glass-card p-8 rounded-lg">
-                            <p class="font-poppins text-sm uppercase tracking-widest text-white/50">FASE 1 (MÊS 1-3)</p>
-                            <h3 class="font-anton text-2xl mt-2 highlight">PROJETOS-PILOTO EM WEB E TRÁFEGO</h3>
-                            <ul class="mt-4 space-y-3 text-white/70 font-light list-disc list-inside">
-                                <li><b class="font-semibold text-white">Tráfego:</b> Agentes de IA para monitorar
-                                    campanhas, comparar resultados e enviar relatórios.</li>
-                                <li><b class="font-semibold text-white">Web:</b> Agentes para monitorar sites, métricas
-                                    e acelerar o trabalho de Designers e Programadores.</li>
-                            </ul>
+                        <div class="glass-card card-with-bg p-8 rounded-lg"
+                            style="background-image: url('https://images.unsplash.com/photo-1517048676732-d65bc937f952?q=80&w=2070&auto=format&fit=crop')">
+                            <div class="mt-auto">
+                                <p class="font-poppins text-sm uppercase tracking-widest text-white/50">FASE 1 (MÊS 1-3)
+                                </p>
+                                <h3 class="font-anton text-2xl mt-2 highlight">PROJETOS-PILOTO EM WEB E TRÁFEGO</h3>
+                                <ul class="mt-4 space-y-3 text-white/70 font-light list-disc list-inside">
+                                    <li><b class="font-semibold text-white">Tráfego:</b> Agentes de IA para monitorar
+                                        campanhas.</li>
+                                    <li><b class="font-semibold text-white">Web:</b> Agentes para monitorar sites e
+                                        acelerar o trabalho.</li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
 
                     <!-- Item da Timeline 2 -->
                     <div class="pl-12 roadmap-item">
-                        <div class="glass-card p-8 rounded-lg">
-                            <p class="font-poppins text-sm uppercase tracking-widest text-white/50">FASE 2 (MÊS 3-6)</p>
-                            <h3 class="font-anton text-2xl mt-2 highlight">EXPANSÃO INTERNA E CONSOLIDAÇÃO</h3>
-                            <ul class="mt-4 space-y-3 text-white/70 font-light list-disc list-inside">
-                                <li><b class="font-semibold text-white">Processos:</b> Criação de agentes para suprir
-                                    qualquer necessidade de trabalhos operacionais repetitivos.</li>
-                                <li><b class="font-semibold text-white">Consolidação:</b> Transformar a IA em um pilar
-                                    central da operação, gerando vantagem competitiva.</li>
-                            </ul>
+                        <div class="glass-card card-with-bg p-8 rounded-lg"
+                            style="background-image: url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=2070&auto=format&fit=crop')">
+                            <div class="mt-auto">
+                                <p class="font-poppins text-sm uppercase tracking-widest text-white/50">FASE 2 (MÊS 3-6)
+                                </p>
+                                <h3 class="font-anton text-2xl mt-2 highlight">EXPANSÃO INTERNA E CONSOLIDAÇÃO</h3>
+                                <ul class="mt-4 space-y-3 text-white/70 font-light list-disc list-inside">
+                                    <li><b class="font-semibold text-white">Processos:</b> Agentes para tarefas
+                                        operacionais repetitivas.</li>
+                                    <li><b class="font-semibold text-white">Consolidação:</b> Transformar a IA em pilar
+                                        central da operação.</li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -338,9 +381,9 @@
     </section>
 
     <!-- Seção: Visão de Longo Prazo -->
-    <section class="py-20 md:py-32 relative isolate overflow-hidden">
-        <canvas id="canvas-visao" class="canvas-bg"></canvas>
-        <div class="container mx-auto px-6 md:px-12 relative z-10 reveal">
+    <section class="section-bg"
+        style="background-image: url('https://images.unsplash.com/photo-1519791883288-dc81a69f7e5b?q=80&w=1974&auto=format&fit=crop');">
+        <div class="container mx-auto px-6 md:px-12 py-32 md:py-48 reveal">
             <div class="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                 <div>
                     <h2 class="font-anton text-4xl md:text-6xl uppercase"><span class="highlight">A Visão de Longo
@@ -365,21 +408,29 @@
                     </div>
                 </div>
                 <div class="grid grid-cols-2 gap-4">
-                    <div class="glass-card p-6 rounded-lg reveal">
-                        <h3 class="font-anton text-xl highlight">Crescimento Exponencial</h3>
-                        <p class="text-sm mt-2 font-light text-white/70">Projeção de crescimento anual superior a 23%
-                            até 2030 (Statista).</p>
+                    <div class="glass-card card-with-bg p-6 rounded-lg reveal"
+                        style="background-image: url('https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2015&auto=format&fit=crop')">
+                        <div class="mt-auto">
+                            <h3 class="font-anton text-xl highlight">Crescimento Exponencial</h3>
+                            <p class="text-sm mt-2 font-light text-white/70">Crescimento anual superior a 23% até 2030.
+                            </p>
+                        </div>
                     </div>
-                    <div class="glass-card p-6 rounded-lg reveal" style="transition-delay: 100ms;">
-                        <h3 class="font-anton text-xl highlight">Oceano Azul</h3>
-                        <p class="text-sm mt-2 font-light text-white/70">Poucas agências hoje vendem agentes de IA, uma
-                            demanda crescente.</p>
+                    <div class="glass-card card-with-bg p-6 rounded-lg reveal"
+                        style="background-image: url('https://images.unsplash.com/photo-1559028006-44a36f115a3c?q=80&w=1974&auto=format&fit=crop')">
+                        <div class="mt-auto">
+                            <h3 class="font-anton text-xl highlight">Oceano Azul</h3>
+                            <p class="text-sm mt-2 font-light text-white/70">Poucas agências vendem agentes de IA hoje.
+                            </p>
+                        </div>
                     </div>
-                    <div class="glass-card p-6 rounded-lg col-span-2 reveal" style="transition-delay: 200ms;">
-                        <h3 class="font-anton text-xl highlight">Modelos de Negócio</h3>
-                        <p class="text-sm mt-2 font-light text-white/70"><b class="text-white">Assinatura Fixa:</b> Taxa
-                            de implementação + mensalidade. <br><b class="text-white">Dinâmico (Uso/Créditos):</b>
-                            Modelo similar ao de tráfego pago.</p>
+                    <div class="glass-card card-with-bg p-6 rounded-lg col-span-2 reveal"
+                        style="background-image: url('https://images.unsplash.com/photo-1556761175-b413da4baf72?q=80&w=1974&auto=format&fit=crop')">
+                        <div class="mt-auto">
+                            <h3 class="font-anton text-xl highlight">Modelos de Negócio</h3>
+                            <p class="text-sm mt-2 font-light text-white/70"><b class="text-white">Assinatura Fixa ou
+                                    Dinâmica</b> (baseada em uso).</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -454,11 +505,11 @@
 
 
     <!-- Footer -->
-    <section class="section-bg"
+    <section class="section-bg min-h-screen"
         style="background-image: url('https://images.unsplash.com/photo-1618005198919-d3d4b5a92ead?q=80&w=1974&auto=format&fit=crop');">
-        <footer class="text-center py-32 md:py-48 reveal">
-            <p class="font-anton text-3xl md:text-5xl uppercase">O conforto gera ferrugem.</p>
-            <p class="font-anton text-3xl md:text-5xl uppercase highlight mt-2">A batalha afia a lâmina.</p>
+        <footer class="text-left h-full min-h-screen flex flex-col items-center justify-center p-6 reveal">
+            <p class="font-anton text-7xl md:text-9xl uppercase">O conforto gera ferrugem.</p>
+            <p class="font-anton text-7xl md:text-9xl uppercase highlight mt-2">A batalha afia a lâmina.</p>
         </footer>
     </section>
 
@@ -600,40 +651,6 @@
                 window.addEventListener('resize', setSize);
             }
 
-            // Animação 4: Grade Ondulante (Visão)
-            function createWarpingGrid(canvasId) {
-                const canvas = document.getElementById(canvasId);
-                if (!canvas) return;
-                const ctx = canvas.getContext('2d');
-                let time = 0;
-                const gridSize = 40;
-                const setSize = () => {
-                    canvas.width = canvas.offsetWidth;
-                    canvas.height = canvas.offsetHeight;
-                };
-                setSize();
-
-                function draw() {
-                    ctx.clearRect(0, 0, canvas.width, canvas.height);
-                    ctx.strokeStyle = '#fcb515';
-                    ctx.lineWidth = 0.3;
-                    for (let x = 0; x < canvas.width; x += gridSize) {
-                        for (let y = 0; y < canvas.height; y += gridSize) {
-                            const angle = Math.sin(x * 0.01 + time) + Math.cos(y * 0.01 + time);
-                            ctx.save();
-                            ctx.translate(x + gridSize / 2, y + gridSize / 2);
-                            ctx.rotate(angle);
-                            ctx.strokeRect(-gridSize / 4, -gridSize / 4, gridSize / 2, gridSize / 2);
-                            ctx.restore();
-                        }
-                    }
-                    time += 0.01;
-                    requestAnimationFrame(draw);
-                }
-                draw();
-                window.addEventListener('resize', setSize);
-            }
-
             // Animação 5: Partículas de Alinhamento (Alinhamento)
             function createAlignmentParticles(canvasId) {
                 const canvas = document.getElementById(canvasId);
@@ -730,10 +747,8 @@
 
 
             // Inicializar todas as animações
-            // createInteractiveLines('canvas-forja'); // Removida pois a seção mudou
             createGeometricNoise('canvas-proposta');
             createScanningLines('canvas-roadmap');
-            createWarpingGrid('canvas-visao');
             createAlignmentParticles('canvas-alinhamento');
             createErraticCrosses('canvas-porque');
 
