@@ -19,172 +19,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 
-    <style>
-        /* Estilos customizados e definições de fontes */
-        body {
-            background-color: #000;
-            color: #f5f5f5;
-            font-family: 'Poppins', sans-serif;
-            overflow-x: hidden;
-        }
-
-        .font-anton {
-            font-family: 'Anton', sans-serif;
-            letter-spacing: 1.5px;
-        }
-
-        .font-poppins {
-            font-family: 'Poppins', sans-serif;
-        }
-
-        .highlight {
-            color: #fcb515;
-        }
-
-        /* Efeito Glassmorphism */
-        .glass-card {
-            background: rgba(0, 0, 0, 0.3);
-            /* Fundo preto com transparência */
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            /* Transição específica para evitar animações indesejadas na imagem */
-            transition: background-color 0.3s ease, border-color 0.3s ease;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .glass-card:hover {
-            background: rgba(10, 10, 10, 0.4);
-            border: 1px solid rgba(251, 181, 21, 0.5);
-        }
-
-        /* Card com Background Image */
-        .card-with-bg {
-            position: relative;
-            background-size: cover;
-            background-position: center;
-            overflow: hidden;
-            min-height: 350px;
-            /* Garante altura mínima */
-        }
-
-        .card-with-bg::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(to top, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.3));
-            z-index: 1;
-        }
-
-        .card-with-bg>* {
-            position: relative;
-            z-index: 2;
-        }
-
-
-        /* Animações de Scroll (Fade in) */
-        .reveal {
-            opacity: 0;
-            transform: translateY(50px);
-            transition: opacity 1s ease-out, transform 0.8s ease-out;
-        }
-
-        .reveal-visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Background com Overlay */
-        .section-bg {
-            position: relative;
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            /* Parallax effect */
-        }
-
-        .section-bg::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: rgba(0, 0, 0, 0.85);
-            /* Overlay mais escuro */
-            z-index: 1;
-        }
-
-        .section-bg>* {
-            position: relative;
-            z-index: 2;
-        }
-
-        /* Elementos Decorativos */
-        .deco-shape {
-            position: fixed;
-            /* Mudar para fixed para melhor efeito parallax */
-            opacity: 0.3;
-            pointer-events: none;
-            transition: transform 0.5s ease-out;
-        }
-
-        .deco-1 {
-            top: 20%;
-            left: 5%;
-            width: 100px;
-            height: 1px;
-            background: #fcb515;
-        }
-
-        .deco-2 {
-            top: 80%;
-            right: 10%;
-            width: 60px;
-            height: 60px;
-            border: 1px solid #fcb515;
-        }
-
-        .deco-3 {
-            top: 50%;
-            left: 15%;
-            width: 80px;
-            height: 1px;
-            background: #fcb515;
-            transform: rotate(90deg);
-        }
-
-        .deco-4 {
-            bottom: 10%;
-            left: 10%;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            border: 1px solid #fcb515;
-        }
-
-        .deco-5 {
-            top: 35%;
-            right: 8%;
-            width: 150px;
-            height: 1px;
-            background: #fcb515;
-        }
-
-        .canvas-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 0;
-            opacity: 0.1;
-        }
-    </style>
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
 <body class="antialiased">
@@ -197,10 +32,10 @@
     <div class="deco-shape deco-5"></div>
 
     <!-- Hero Section -->
-    <section class="relative min-h-screen flex items-center justify-center text-center overflow-hidden">
+    <section class="relative min-h-screen flex items-center justify-center text-center overflow-hidden hero-section">
         <!-- Video Background -->
-        <video autoplay loop muted playsinline class="absolute top-0 left-0 w-full h-full object-cover z-0">
-            <source src="https://videos.pexels.com/video-files/3214439/3214439-hd_1920_1080_25fps.mp4" type="video/mp4">
+        <video autoplay loop muted playsinline class="absolute top-0 left-0 w-full h-screen object-cover z-0">
+            <source src="./assets/vid/hero.mp4" type="video/mp4">
             Seu navegador não suporta a tag de vídeo.
         </video>
 
@@ -238,7 +73,7 @@
                     </div>
                 </div>
                 <div class="reveal">
-                    <img src="https://images.unsplash.com/photo-1542360299-4a742b06385d?q=80&w=1974&auto=format&fit=crop"
+                    <img src="./assets/img/img1.webp"
                         alt="Faíscas de metal sendo forjado, representando a pressão e a criação."
                         class="rounded-lg w-full h-[400px] lg:h-[500px] object-cover">
                 </div>
@@ -265,7 +100,7 @@
                     </div>
                 </div>
                 <div class="reveal lg:order-first">
-                    <img src="https://images.unsplash.com/photo-1538688283628-b2a1012d4996?q=80&w=2070&auto=format&fit=crop"
+                    <img src="./assets/img/img2.webp"
                         alt="Visualização abstrata de uma rede de dados, representando o ecossistema de negócios e a inteligência artificial."
                         class="rounded-lg w-full h-[400px] lg:h-[500px] object-cover">
                 </div>
@@ -282,7 +117,7 @@
                         Proposta:</span> Retorno com Impacto Imediato</h2>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
                     <div class="glass-card card-with-bg rounded-lg"
-                        style="background-image: url('https://images.unsplash.com/photo-1587440871875-191322ee64b0?q=80&w=2071&auto=format&fit=crop')">
+                        style="background-image: url('./assets/img/card-1.webp')">
                         <div class="p-8 mt-auto">
                             <h3 class="font-anton text-2xl highlight">Suporte Imediato e Amplo</h3>
                             <p class="mt-4 text-white/70 font-light">Ofereço apoio direto à operação de Web ou Tráfego
@@ -290,7 +125,7 @@
                         </div>
                     </div>
                     <div class="glass-card card-with-bg rounded-lg"
-                        style="background-image: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop')">
+                        style="background-image: url('./assets/img/card-1.webp')">
                         <div class="p-8 mt-auto">
                             <h3 class="font-anton text-2xl highlight">Otimização de Processos</h3>
                             <p class="mt-4 text-white/70 font-light">Como especialista certificado em ClickUp, posso
@@ -298,7 +133,7 @@
                         </div>
                     </div>
                     <div class="glass-card card-with-bg rounded-lg"
-                        style="background-image: url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop')">
+                        style="background-image: url('./assets/img/card-1.webp')">
                         <div class="p-8 mt-auto">
                             <h3 class="font-anton text-2xl highlight">Construção Estratégica</h3>
                             <p class="mt-4 text-white/70 font-light">Liderar a criação do setor de IA & Automação para
@@ -326,7 +161,7 @@
                     <!-- Item da Timeline 1 -->
                     <div class="pl-12 roadmap-item">
                         <div class="glass-card card-with-bg p-8 rounded-lg"
-                            style="background-image: url('https://images.unsplash.com/photo-1517048676732-d65bc937f952?q=80&w=2070&auto=format&fit=crop')">
+                            style="background-image: url('./assets/img/card-2.webp')">
                             <div class="mt-auto">
                                 <p class="font-poppins text-sm uppercase tracking-widest text-white/50">FASE 1 (MÊS 1-3)
                                 </p>
@@ -344,7 +179,7 @@
                     <!-- Item da Timeline 2 -->
                     <div class="pl-12 roadmap-item">
                         <div class="glass-card card-with-bg p-8 rounded-lg"
-                            style="background-image: url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=2070&auto=format&fit=crop')">
+                            style="background-image: url('./assets/img/card-2.webp')">
                             <div class="mt-auto">
                                 <p class="font-poppins text-sm uppercase tracking-widest text-white/50">FASE 2 (MÊS 3-6)
                                 </p>
@@ -364,8 +199,7 @@
     </section>
 
     <!-- Seção: Compromisso -->
-    <section class="section-bg"
-        style="background-image: url('https://images.unsplash.com/photo-1580582932707-520aed937b7b?q=80&w=1932&auto=format&fit=crop');">
+    <section class="section-bg" style="background-image: url('./assets/img/img3.webp');">
         <div class="container mx-auto px-6 md:px-12 py-32 md:py-48 text-center reveal">
             <div class="max-w-4xl mx-auto">
                 <h2 class="font-anton text-4xl md:text-6xl uppercase"><span class="highlight">Meu Compromisso:</span>
@@ -381,8 +215,7 @@
     </section>
 
     <!-- Seção: Visão de Longo Prazo -->
-    <section class="section-bg"
-        style="background-image: url('https://images.unsplash.com/photo-1519791883288-dc81a69f7e5b?q=80&w=1974&auto=format&fit=crop');">
+    <section class="section-bg2" style="background-image: url('./assets/img/banner.webp');">
         <div class="container mx-auto px-6 md:px-12 py-32 md:py-48 reveal">
             <div class="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                 <div>
@@ -392,44 +225,46 @@
                         diferencial para a RT e um produto de alto valor para nossos clientes.</p>
                     <div class="mt-8 space-y-4">
                         <div class="border-l-2 border-amber-400 pl-4 py-2">
-                            <h4 class="font-bold text-white">Exemplos de Agentes para Clientes (escolas):</h4>
-                            <ul class="font-light text-white/70 list-disc list-inside mt-2">
-                                <li>IA que responde dúvidas de pais no WhatsApp 24/7.</li>
-                                <li>Monitoramento de engajamento e alerta sobre riscos de churn.</li>
-                                <li>Qualquer tarefa repetitiva pode ser automatizada!</li>
-                            </ul>
-                        </div>
-                        <div class="border-l-2 border-amber-400 pl-4 py-2">
                             <h4 class="font-bold text-white">Potencial de Mercado:</h4>
-                            <p class="font-light text-white/70 mt-2">Venda de um agente de IA (implementação +
-                                mensalidade) varia de <span class="highlight font-semibold">R$ 2.000 a R$ 20.000</span>
-                                por mês.</p>
+                            <ul class="font-light text-white/70 list-disc list-inside mt-2">
+                                <li>Venda de um agente de IA (implementação + mensalidade) varia de <span
+                                        class="highlight font-semibold">R$ 2.000 a R$ 20.000</span> por mês.</li>
+                                <li><b>Infoprodutos:</b> Venda de guias e templates para replicar agentes de IA simples
+                                    em empresas menores. <span class="highlight">Já tenho templates pronto para
+                                        venda!</span></li>
+                            </ul>
                         </div>
                     </div>
                 </div>
                 <div class="grid grid-cols-2 gap-4">
                     <div class="glass-card card-with-bg p-6 rounded-lg reveal"
-                        style="background-image: url('https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2015&auto=format&fit=crop')">
+                        style="background-image: url('./assets/img/card-1.webp')">
                         <div class="mt-auto">
                             <h3 class="font-anton text-xl highlight">Crescimento Exponencial</h3>
-                            <p class="text-sm mt-2 font-light text-white/70">Crescimento anual superior a 23% até 2030.
-                            </p>
+                            <p class="text-sm mt-2 font-light text-white/70">O mercado de automação por IA no Brasil tem
+                                projeção de crescimento anual superior a 23% até 2030 (Fonte: Statista). Empresas que
+                                não se adaptarem ficarão para trás.</p>
                         </div>
                     </div>
                     <div class="glass-card card-with-bg p-6 rounded-lg reveal"
-                        style="background-image: url('https://images.unsplash.com/photo-1559028006-44a36f115a3c?q=80&w=1974&auto=format&fit=crop')">
+                        style="background-image: url('./assets/img/card-1.webp')">
                         <div class="mt-auto">
-                            <h3 class="font-anton text-xl highlight">Oceano Azul</h3>
-                            <p class="text-sm mt-2 font-light text-white/70">Poucas agências vendem agentes de IA hoje.
-                            </p>
+                            <h3 class="font-anton text-xl highlight">O Oceano Azul</h3>
+                            <p class="text-sm mt-2 font-light text-white/70">Poucas agências hoje vendem agentes de IA,
+                                algo que está com uma demanda cada vez mais crescente.</p>
                         </div>
                     </div>
                     <div class="glass-card card-with-bg p-6 rounded-lg col-span-2 reveal"
-                        style="background-image: url('https://images.unsplash.com/photo-1556761175-b413da4baf72?q=80&w=1974&auto=format&fit=crop')">
+                        style="background-image: url('./assets/img/card-2.webp')">
                         <div class="mt-auto">
                             <h3 class="font-anton text-xl highlight">Modelos de Negócio</h3>
-                            <p class="text-sm mt-2 font-light text-white/70"><b class="text-white">Assinatura Fixa ou
-                                    Dinâmica</b> (baseada em uso).</p>
+                            <ul class="text-sm mt-2 font-light text-white/70 list-disc list-inside">
+                                <li><b class="text-white">Assinatura Fixa:</b> Taxa de implementação + mensalidade fixa.
+                                    Ideal para previsibilidade de custos.</li>
+                                <li><b class="text-white">Dinâmico (Uso/Créditos):</b> Taxa de implementação menor +
+                                    compra de créditos. Funciona como o modelo de tráfego pago: o cliente investe nos
+                                    créditos (mídia) e nossa remuneração vem do sucesso da operação.</li>
+                            </ul>
                         </div>
                     </div>
                 </div>
@@ -437,6 +272,136 @@
         </div>
     </section>
 
+    <section class="py-20 md:py-32">
+        <div class="container mx-auto px-6 md:px-12">
+            <div class="max-w-5xl mx-auto text-center reveal">
+                <h2 class="font-anton text-4xl md:text-6xl uppercase">
+                    <span class="highlight">ROI Imediato:</span> Eficiência Interna
+                </h2>
+                <p class="font-poppins text-lg md:text-xl mt-6 text-white/80 font-light max-w-4xl mx-auto">
+                    Antes de se tornar um produto, a IA será nosso principal diferencial competitivo interno. Vamos
+                    transformar horas de trabalho em minutos, liberando nossa equipe para focar em estratégia.
+                </p>
+            </div>
+
+            <div class="mt-12 overflow-x-auto reveal">
+                <div class="min-w-full inline-block align-middle">
+                    <div class="border border-white/10 rounded-lg overflow-hidden">
+                        <table class="min-w-full divide-y divide-white/10">
+                            <thead class="bg-white/5">
+                                <tr class="divide-x divide-white/10">
+                                    <th scope="col"
+                                        class="px-6 py-4 text-left text-sm font-semibold text-white uppercase tracking-wider">
+                                        Processo</th>
+                                    <th scope="col"
+                                        class="px-6 py-4 text-center text-sm font-semibold text-white uppercase tracking-wider">
+                                        Horas/Mês (Antes)</th>
+                                    <th scope="col"
+                                        class="px-6 py-4 text-center text-sm font-semibold text-white uppercase tracking-wider">
+                                        Horas/Mês (Com IA)</th>
+                                    <th scope="col"
+                                        class="px-6 py-4 text-center text-sm font-semibold text-white uppercase tracking-wider font-anton">
+                                        Ganho</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-white/10">
+                                <tr class="divide-x divide-white/10">
+                                    <td class="px-6 py-4 whitespace-nowrap text-base text-white/90">Criação de
+                                        Relatórios</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-base text-white/70 text-center">20h</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-base text-white/70 text-center">2h
+                                        (revisão)</td>
+                                    <td
+                                        class="px-6 py-4 whitespace-nowrap text-xl font-bold text-amber-400 text-center">
+                                        90%</td>
+                                </tr>
+                                <tr class="divide-x divide-white/10">
+                                    <td class="px-6 py-4 whitespace-nowrap text-base text-white/90">Qualificação de
+                                        Leads</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-base text-white/70 text-center">15h</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-base text-white/70 text-center">1h
+                                        (revisão)</td>
+                                    <td
+                                        class="px-6 py-4 whitespace-nowrap text-xl font-bold text-amber-400 text-center">
+                                        ~93%</td>
+                                </tr>
+                                <tr class="divide-x divide-white/10">
+                                    <td class="px-6 py-4 whitespace-nowrap text-base text-white/90">Onboarding de
+                                        Clientes</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-base text-white/70 text-center">10h</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-base text-white/70 text-center">1h
+                                        (supervisão)</td>
+                                    <td
+                                        class="px-6 py-4 whitespace-nowrap text-xl font-bold text-amber-400 text-center">
+                                        90%</td>
+                                </tr>
+                                <tr class="divide-x divide-white/10">
+                                    <td class="px-6 py-4 whitespace-nowrap text-base text-white/90">Monitoramento de
+                                        Campanhas</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-base text-white/70 text-center">30h</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-base text-white/70 text-center">3h
+                                        (análise)</td>
+                                    <td
+                                        class="px-6 py-4 whitespace-nowrap text-xl font-bold text-amber-400 text-center">
+                                        90%</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-10 text-center reveal">
+                <p class="font-poppins text-lg md:text-xl text-white/80 max-w-4xl mx-auto">
+                    Apenas com estes 4 processos, estamos liberando cerca de <span
+                        class="font-bold text-2xl highlight counting-number" data-final-number="70">70</span> horas de
+                    trabalho mensais. Isso equivale a quase um funcionário júnior, representando um ROI imediato.
+                </p>
+            </div>
+        </div>
+    </section>
+    <section class="pb-20 md:pb-32">
+        <div class="container mx-auto px-6 md:px-12">
+            <div class="max-w-5xl mx-auto text-center reveal">
+                <h2 class="font-anton text-4xl md:text-6xl uppercase">
+                    <span class="highlight">Nova Vertical:</span> Geração de Receita
+                </h2>
+                <p class="font-poppins text-lg md:text-xl mt-6 text-white/80 font-light max-w-4xl mx-auto">
+                    A verdadeira escala está em transformar nossa expertise em um produto de alto valor. O mercado de
+                    automação está aquecido e com baixa concorrência qualificada.
+                </p>
+            </div>
+
+            <div class="mt-12 max-w-2xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-4 text-center reveal">
+
+                <div class="glass-card p-8 rounded-lg border border-white/10">
+                    <p class="text-sm uppercase text-white/50 tracking-widest">Nova Receita Mensal (MRR)</p>
+                    <p class="font-anton text-5xl md:text-6xl highlight mt-2">R$ <span class="counting-number"
+                            data-final-number="20000">20.000</span></p>
+                    <p class="text-white/60 mt-2">Baseado em venda de 10 agentes de IA com ticket médio de R$ 2.000
+                        (Conservador)</p>
+                </div>
+
+                <div class="glass-card p-8 rounded-lg border border-white/10">
+                    <p class="text-sm uppercase text-white/50 tracking-widest">Projeção Anual (Ano 1)</p>
+                    <p class="font-anton text-5xl md:text-6xl highlight mt-2">R$ <span class="counting-number"
+                            data-final-number="200000">200.000</span></p>
+                    <p class="text-white/60 mt-2">Cenário conservador para o primeiro ano de operação</p>
+                </div>
+
+            </div>
+
+            <div class="mt-10 text-center reveal">
+                <p class="font-poppins text-lg md:text-xl text-white/80 max-w-4xl mx-auto">
+                    Com uma meta inicial conservadora, criamos uma nova vertical de negócio com potencial de <span
+                        class="font-bold text-2xl highlight">R$ <span class="counting-number"
+                            data-final-number="200000">200.000</span> de faturamento anual inicial</span>, com margens
+                    de lucro
+                    altíssimas por ser um serviço escalável.
+                </p>
+            </div>
+        </div>
+    </section>
     <!-- Seção: Alinhamento -->
     <section class="py-20 md:py-32 relative isolate overflow-hidden">
         <canvas id="canvas-alinhamento" class="canvas-bg"></canvas>
@@ -448,7 +413,7 @@
                     um <b class="text-white">sócio</b>, sempre buscando o crescimento sustentável da empresa.</p>
                 <p class="text-lg md:text-xl font-light mt-4 text-white/80">Meu objetivo de carreira é, através da
                     entrega de resultados exponenciais, merecer a oportunidade de um dia alcançar uma participação de ao
-                    menos <b class="text-white">1% na empresa.</b> É a minha meta pessoal que guiará meu
+                    menos <b class="highlight">1% na empresa.</b> É a minha meta pessoal que guiará meu
                     comprometimento.</p>
 
                 <div class="mt-12">
@@ -504,256 +469,192 @@
 
 
 
+    <!-- Seção: FAQ -->
+    <section class="py-20 md:py-32">
+        <div class="container mx-auto px-6 md:px-12">
+            <h2 class="font-anton text-4xl md:text-6xl uppercase text-center mb-16"><span class="highlight">FAQ:</span>
+                Casos de Uso Práticos</h2>
+
+            <!-- FAQ para RT Publicity -->
+            <div class="mb-16">
+                <h3 class="font-anton text-3xl md:text-4xl uppercase mb-8">Para a <span class="highlight">RT
+                        Publicity</span> (Exemplos de Automação Interna)</h3>
+                <div class="space-y-4" id="faq-accordion-1">
+                    <!-- Item 1.1 -->
+                    <div class="faq-item glass-card rounded-lg overflow-hidden">
+                        <button class="faq-header w-full text-left p-6 flex justify-between items-center">
+                            <span class="font-anton text-xl">Como podemos otimizar nosso processo comercial e
+                                administrativo?</span>
+                            <span class="faq-icon text-2xl highlight">+</span>
+                        </button>
+                        <div class="faq-content">
+                            <div class="p-6 pt-0 space-y-4 text-white/80 font-light">
+                                <p><b class="font-semibold text-white">Agente de Propostas e Contratos:</b> Cria
+                                    rascunhos de propostas comerciais personalizadas em minutos. Após o cliente aprovar,
+                                    ele gera o contrato com os dados do CRM e envia para assinatura eletrônica.</p>
+                                <p><b class="font-semibold text-white">Agente Financeiro:</b> Envia lembretes de
+                                    pagamento automáticos para clientes, notifica a equipe sobre inadimplências e gera
+                                    relatórios de faturamento mensais, economizando horas do setor administrativo.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Item 1.2 -->
+                    <div class="faq-item glass-card rounded-lg overflow-hidden">
+                        <button class="faq-header w-full text-left p-6 flex justify-between items-center">
+                            <span class="font-anton text-xl">Como garantir a excelência e agilidade na gestão de
+                                projetos?</span>
+                            <span class="faq-icon text-2xl highlight">+</span>
+                        </button>
+                        <div class="faq-content">
+                            <div class="p-6 pt-0 space-y-4 text-white/80 font-light">
+                                <p><b class="font-semibold text-white">Agente Gerente de Projetos (Onboarding):</b>
+                                    Assim que uma venda é fechada, este agente cria o projeto no ClickUp, aloca a
+                                    equipe, envia o e-mail de boas-vindas com o formulário de briefing para o cliente e
+                                    agenda a reunião de kickoff. Garante um início de projeto padronizado e sem atrasos.
+                                </p>
+                                <p><b class="font-semibold text-white">Agente de Relatórios de Performance:</b> Coleta
+                                    automaticamente os dados do Google Ads, Meta Ads, Analytics e outras fontes,
+                                    montando o relatório mensal do cliente em um template pré-definido. O gestor de
+                                    contas só precisa adicionar sua análise estratégica, economizando de 2 a 4 horas por
+                                    cliente, todo mês.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Item 1.3 -->
+                    <div class="faq-item glass-card rounded-lg overflow-hidden">
+                        <button class="faq-header w-full text-left p-6 flex justify-between items-center">
+                            <span class="font-anton text-xl">Como potencializar o trabalho das equipes de Mídia e
+                                Conteúdo?</span>
+                            <span class="faq-icon text-2xl highlight">+</span>
+                        </button>
+                        <div class="faq-content">
+                            <div class="p-6 pt-0 space-y-4 text-white/80 font-light">
+                                <p><b class="font-semibold text-white">Agente Estrategista de Tráfego:</b> Monitora as
+                                    campanhas 24/7. Pausa automaticamente anúncios com baixo desempenho, notifica a
+                                    equipe sobre oportunidades (ex: "CPA do criativo X caiu 20% nas últimas 24h") e gera
+                                    insights para otimização.</p>
+                                <p><b class="font-semibold text-white">Agente de Conteúdo e SEO:</b> Monitora
+                                    palavras-chave e concorrentes. Ao identificar uma oportunidade, ele cria uma pauta
+                                    de conteúdo completa no ClickUp, com estrutura do texto, referências e perguntas a
+                                    serem respondidas, acelerando a produção de conteúdo relevante.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ para Clientes -->
+            <div>
+                <h3 class="font-anton text-3xl md:text-4xl uppercase mb-8">Para <span class="highlight">Clientes</span>
+                    (Exemplos para Venda Externa)</h3>
+                <div class="space-y-4" id="faq-accordion-2">
+                    <!-- Item 2.1 -->
+                    <div class="faq-item glass-card rounded-lg overflow-hidden">
+                        <button class="faq-header w-full text-left p-6 flex justify-between items-center">
+                            <span class="font-anton text-xl">Como posso oferecer atendimento 24/7 sem aumentar minha
+                                equipe?</span>
+                            <span class="faq-icon text-2xl highlight">+</span>
+                        </button>
+                        <div class="faq-content">
+                            <div class="p-6 pt-0 space-y-4 text-white/80 font-light">
+                                <p><b class="font-semibold text-white">Agente de Atendimento Inteligente:</b> Um chatbot
+                                    avançado que vai além de respostas prontas. Ele é treinado com todas as informações
+                                    do seu negócio (produtos, serviços, horários, políticas) e pode responder 90% das
+                                    dúvidas dos clientes via WhatsApp ou Instagram, a qualquer hora do dia. Quando não
+                                    sabe a resposta, ele transfere para um humano de forma transparente.</p>
+                                <div class="foco-escolas border-l-2 border-amber-400 pl-4 py-2 mt-4">
+                                    <p><b class="text-white">🎯 Foco em Escolas:</b> O agente pode responder dúvidas de
+                                        pais sobre matrículas, lista de materiais, calendário escolar e gerar segunda
+                                        via de boletos, desafogando a secretaria da escola.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Item 2.2 -->
+                    <div class="faq-item glass-card rounded-lg overflow-hidden">
+                        <button class="faq-header w-full text-left p-6 flex justify-between items-center">
+                            <span class="font-anton text-xl">Como posso captar e qualificar mais leads sem esforço
+                                manual?</span>
+                            <span class="faq-icon text-2xl highlight">+</span>
+                        </button>
+                        <div class="faq-content">
+                            <div class="p-6 pt-0 space-y-4 text-white/80 font-light">
+                                <p><b class="font-semibold text-white">Agente de Captação e Nutrição:</b> Quando alguém
+                                    preenche um formulário no site, o agente inicia uma conversa imediata e
+                                    personalizada via WhatsApp. Ele qualifica o lead fazendo perguntas-chave e, se o
+                                    lead for qualificado, pode agendar uma demonstração ou visita diretamente na agenda
+                                    do vendedor.</p>
+                                <div class="foco-escolas border-l-2 border-amber-400 pl-4 py-2 mt-4">
+                                    <p><b class="text-white">🎯 Foco em Escolas:</b> O agente conversa com pais
+                                        interessados, envia o tour virtual da escola, responde às principais dúvidas
+                                        sobre a metodologia de ensino e agenda uma visita presencial, aumentando
+                                        drasticamente a taxa de conversão de interessados em visitantes.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Item 2.3 -->
+                    <div class="faq-item glass-card rounded-lg overflow-hidden">
+                        <button class="faq-header w-full text-left p-6 flex justify-between items-center">
+                            <span class="font-anton text-xl">Como posso reduzir o cancelamento de clientes
+                                (churn)?</span>
+                            <span class="faq-icon text-2xl highlight">+</span>
+                        </button>
+                        <div class="faq-content">
+                            <div class="p-6 pt-0 space-y-4 text-white/80 font-light">
+                                <p><b class="font-semibold text-white">Agente de Retenção Preditiva:</b> O agente
+                                    monitora a "saúde" do cliente. Ele analisa a frequência de uso de um software, o
+                                    histórico de suporte, a comunicação por e-mail e outros indicadores. Se detectar um
+                                    padrão de risco (ex: baixa utilização, reclamações recorrentes), ele cria um alerta
+                                    para o gerente da conta agir proativamente, antes que o cliente peça o cancelamento.
+                                </p>
+                                <div class="foco-escolas border-l-2 border-amber-400 pl-4 py-2 mt-4">
+                                    <p><b class="text-white">🎯 Foco em Escolas:</b> O agente pode identificar alunos
+                                        com muitas faltas ou pais que pararam de interagir no portal online. Ele pode
+                                        enviar uma mensagem automática e empática ("Olá, [Nome do Pai]. Notamos que o
+                                        [Nome do Aluno] faltou nos últimos dias. Está tudo bem? Podemos ajudar em
+                                        algo?") para reengajar a família e prevenir a evasão.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Item 2.4 -->
+                    <div class="faq-item glass-card rounded-lg overflow-hidden">
+                        <button class="faq-header w-full text-left p-6 flex justify-between items-center">
+                            <span class="font-anton text-xl">Como posso monitorar e melhorar a reputação online da minha
+                                empresa?</span>
+                            <span class="faq-icon text-2xl highlight">+</span>
+                        </button>
+                        <div class="faq-content">
+                            <div class="p-6 pt-0 space-y-4 text-white/80 font-light">
+                                <p><b class="font-semibold text-white">Agente Guardião de Reputação:</b> Este agente
+                                    monitora em tempo real menções à sua marca no Google Meu Negócio, Reclame Aqui e
+                                    redes sociais. Ao detectar uma avaliação negativa, ele notifica imediatamente o
+                                    gestor responsável e pode até mesmo gerar uma sugestão de resposta cordial e
+                                    profissional, baseada nas diretrizes da empresa.</p>
+                                <div class="foco-escolas border-l-2 border-amber-400 pl-4 py-2 mt-4">
+                                    <p><b class="text-white">🎯 Foco em Escolas:</b> Monitora avaliações de pais em
+                                        portais como "Melhor Escola" ou Google. Uma resposta rápida a uma crítica pode
+                                        reverter uma situação de crise e mostrar para outros pais que a escola se
+                                        importa.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Footer -->
-    <section class="section-bg min-h-screen"
-        style="background-image: url('https://images.unsplash.com/photo-1618005198919-d3d4b5a92ead?q=80&w=1974&auto=format&fit=crop');">
+    <section class="section-bg min-h-screen" style="background-image: url('./assets/img/img4.webp');">
         <footer class="text-left h-full min-h-screen flex flex-col items-center justify-center p-6 reveal">
             <p class="font-anton text-7xl md:text-9xl uppercase">O conforto gera ferrugem.</p>
             <p class="font-anton text-7xl md:text-9xl uppercase highlight mt-2">A batalha afia a lâmina.</p>
         </footer>
     </section>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            gsap.registerPlugin(ScrollTrigger);
-
-            // --- Animação de Revelação Simples ---
-            const revealElements = document.querySelectorAll('.reveal');
-            revealElements.forEach(elem => {
-                gsap.fromTo(elem,
-                    { opacity: 0, y: 50 },
-                    {
-                        opacity: 1,
-                        y: 0,
-                        duration: 1,
-                        ease: 'power3.out',
-                        scrollTrigger: {
-                            trigger: elem,
-                            start: 'top 85%',
-                            toggleActions: 'play none none none'
-                        }
-                    }
-                );
-            });
-
-            // --- Animação Interativa do Roadmap ---
-            const roadmapItems = document.querySelectorAll('.roadmap-item');
-            gsap.to("#timeline-progress", {
-                height: "100%",
-                ease: "none",
-                scrollTrigger: {
-                    trigger: "#roadmap-section",
-                    start: "top center",
-                    end: "bottom center",
-                    scrub: true
-                }
-            });
-            roadmapItems.forEach(item => {
-                gsap.from(item, {
-                    opacity: 0,
-                    x: 50,
-                    ease: 'power3.out',
-                    scrollTrigger: {
-                        trigger: item,
-                        start: 'top 80%',
-                        toggleActions: 'play none none reverse'
-                    }
-                });
-            });
-
-            // --- Lógica para Elementos Decorativos ---
-            const decoShapes = document.querySelectorAll('.deco-shape');
-            window.addEventListener('scroll', function () {
-                const scrollY = window.scrollY;
-                decoShapes.forEach((shape, i) => {
-                    const factor = (i % 2 === 0 ? -1 : 1) * (i + 1) * 0.1;
-                    gsap.to(shape, { y: scrollY * factor, ease: 'power2.out', duration: 1 });
-                });
-            });
-
-            // --- Funções de Animação de Fundo ---
-
-            // Animação 2: Ruído Geométrico (Proposta)
-            function createGeometricNoise(canvasId) {
-                const canvas = document.getElementById(canvasId);
-                if (!canvas) return;
-                const ctx = canvas.getContext('2d');
-                let lines = [];
-                const setSize = () => {
-                    canvas.width = canvas.offsetWidth;
-                    canvas.height = canvas.offsetHeight;
-                };
-                setSize();
-
-                class Line {
-                    constructor() {
-                        this.x = Math.random() * canvas.width;
-                        this.y = Math.random() * canvas.height;
-                        this.life = Math.random() * 200 + 50;
-                        this.angle = Math.random() * Math.PI * 2;
-                        this.speed = Math.random() * 0.3 + 0.1;
-                    }
-                    update() {
-                        this.life--;
-                        this.x += Math.cos(this.angle) * this.speed;
-                        this.y += Math.sin(this.angle) * this.speed;
-                        if (this.x < 0 || this.x > canvas.width || this.y < 0 || this.y > canvas.height) this.life = 0;
-                    }
-                    draw() {
-                        const opacity = this.life / 100 > 1 ? 1 : this.life / 100;
-                        ctx.strokeStyle = `rgba(252, 181, 21, ${opacity * 0.7})`;
-                        ctx.lineWidth = 1;
-                        ctx.beginPath();
-                        ctx.moveTo(this.x, this.y);
-                        ctx.lineTo(this.x + Math.cos(this.angle) * 10, this.y + Math.sin(this.angle) * 10);
-                        ctx.stroke();
-                    }
-                }
-
-                function animate() {
-                    ctx.clearRect(0, 0, canvas.width, canvas.height);
-                    if (lines.length < 100) lines.push(new Line());
-                    lines = lines.filter(l => l.life > 0);
-                    lines.forEach(l => { l.update(); l.draw(); });
-                    requestAnimationFrame(animate);
-                }
-                animate();
-                window.addEventListener('resize', setSize);
-            }
-
-            // Animação 3: Linhas de Escaneamento (Roadmap)
-            function createScanningLines(canvasId) {
-                const canvas = document.getElementById(canvasId);
-                if (!canvas) return;
-                const ctx = canvas.getContext('2d');
-                let yPos = 0;
-                let direction = 1;
-                const setSize = () => {
-                    canvas.width = canvas.offsetWidth;
-                    canvas.height = canvas.offsetHeight;
-                };
-                setSize();
-
-                function animate() {
-                    ctx.clearRect(0, 0, canvas.width, canvas.height);
-                    ctx.strokeStyle = `rgba(252, 181, 21, 0.5)`;
-                    ctx.lineWidth = 1;
-                    ctx.beginPath();
-                    ctx.moveTo(0, yPos);
-                    ctx.lineTo(canvas.width, yPos);
-                    ctx.stroke();
-
-                    yPos += direction * 0.5;
-                    if (yPos > canvas.height || yPos < 0) direction *= -1;
-                    requestAnimationFrame(animate);
-                }
-                animate();
-                window.addEventListener('resize', setSize);
-            }
-
-            // Animação 5: Partículas de Alinhamento (Alinhamento)
-            function createAlignmentParticles(canvasId) {
-                const canvas = document.getElementById(canvasId);
-                if (!canvas) return;
-                const ctx = canvas.getContext('2d');
-                let particles = [];
-                const setSize = () => {
-                    canvas.width = canvas.offsetWidth;
-                    canvas.height = canvas.offsetHeight;
-                };
-                setSize();
-
-                class Particle {
-                    constructor() {
-                        const edge = Math.floor(Math.random() * 4);
-                        if (edge === 0) { this.x = 0; this.y = Math.random() * canvas.height; }
-                        else if (edge === 1) { this.x = canvas.width; this.y = Math.random() * canvas.height; }
-                        else if (edge === 2) { this.x = Math.random() * canvas.width; this.y = 0; }
-                        else { this.x = Math.random() * canvas.width; this.y = canvas.height; }
-                        this.size = Math.random() * 3 + 1;
-                        this.life = 1;
-                    }
-                    update() {
-                        const dx = canvas.width / 2 - this.x;
-                        const dy = canvas.height / 2 - this.y;
-                        const dist = Math.hypot(dx, dy);
-                        if (dist > 2) {
-                            this.x += dx / 100;
-                            this.y += dy / 100;
-                        }
-                    }
-                    draw() {
-                        ctx.fillStyle = `rgba(252, 181, 21, 0.7)`;
-                        ctx.beginPath();
-                        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                        ctx.fill();
-                    }
-                }
-
-                function animate() {
-                    ctx.clearRect(0, 0, canvas.width, canvas.height);
-                    if (particles.length < 80) particles.push(new Particle());
-                    particles.forEach(p => { p.update(); p.draw(); });
-                    requestAnimationFrame(animate);
-                }
-                animate();
-                window.addEventListener('resize', setSize);
-            }
-
-            // Animação 6: Cruzes Erráticas (Por que eu?)
-            function createErraticCrosses(canvasId) {
-                const canvas = document.getElementById(canvasId);
-                if (!canvas) return;
-                const ctx = canvas.getContext('2d');
-                let crosses = [];
-                const setSize = () => {
-                    canvas.width = canvas.offsetWidth;
-                    canvas.height = canvas.offsetHeight;
-                };
-                setSize();
-
-                class Cross {
-                    constructor() {
-                        this.x = Math.random() * canvas.width;
-                        this.y = Math.random() * canvas.height;
-                        this.size = Math.random() * 10 + 5;
-                        this.life = Math.random() * 100 + 20;
-                    }
-                    draw() {
-                        const opacity = Math.random() * 0.5 + 0.2;
-                        ctx.strokeStyle = `rgba(252, 181, 21, ${opacity})`;
-                        ctx.lineWidth = 1.5;
-                        ctx.beginPath();
-                        ctx.moveTo(this.x - this.size, this.y);
-                        ctx.lineTo(this.x + this.size, this.y);
-                        ctx.moveTo(this.x, this.y - this.size);
-                        ctx.lineTo(this.x, this.y + this.size);
-                        ctx.stroke();
-                    }
-                }
-
-                function animate() {
-                    ctx.clearRect(0, 0, canvas.width, canvas.height);
-                    if (crosses.length < 30) crosses.push(new Cross());
-                    crosses = crosses.filter(c => c.life-- > 0);
-                    if (Math.random() > 0.9) crosses.push(new Cross());
-
-                    crosses.forEach(c => c.draw());
-                    requestAnimationFrame(animate);
-                }
-                animate();
-                window.addEventListener('resize', setSize);
-            }
-
-
-            // Inicializar todas as animações
-            createGeometricNoise('canvas-proposta');
-            createScanningLines('canvas-roadmap');
-            createAlignmentParticles('canvas-alinhamento');
-            createErraticCrosses('canvas-porque');
-
-        });
-    </script>
+    <script src="assets/js/main.js"></script>
 </body>
 
 </html>
